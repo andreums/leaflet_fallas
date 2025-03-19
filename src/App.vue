@@ -11,10 +11,19 @@ const closeFallaInfo = () => {
 </script>
 
 <template>
-  <div class="flex h-screen">
-    <div class="w-3/4 h-full">
+  <div class="flex flex-col md:flex-row h-screen">
+
+    <!-- Mapa -->
+    <div class="w-full flex-1">
       <MapView @falla-seleccionada="selectedFalla = $event" />
     </div>
-    <FallaInfo v-if="selectedFalla" :falla="selectedFalla" @close="closeFallaInfo" />
+
+    <!-- Info de la falla -->
+    <FallaInfo
+        v-if="selectedFalla"
+        :falla="selectedFalla"
+        @close="closeFallaInfo"
+        class="w-full md:w-1/4 bg-white shadow-md z-10 absolute md:relative top-0 left-0"
+    />
   </div>
 </template>

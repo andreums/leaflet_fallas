@@ -48,8 +48,13 @@ const generateNumberIcon = (seccion, isLarge = false) => {
 </script>
 
 <template>
-  <div class="w-1/4 h-full bg-gray-100 p-4 relative">
-    <button @click="emit('close')" class="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center">X</button>
+  <div class="w-full md:w-1/4 h-full bg-gray-100 p-4 relative">
+    <button
+        @click="emit('close')"
+        class="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center"
+    >
+      X
+    </button>
     <div v-if="falla" class="mt-4 p-4 bg-white shadow-md rounded-lg">
       <h2 class="text-xl font-bold mb-3">Falla {{ falla.nombre }}</h2>
       <p><strong>Año de fundación:</strong> {{ falla.anyo_fundacion }}</p>
@@ -70,8 +75,8 @@ const generateNumberIcon = (seccion, isLarge = false) => {
       <div v-else-if="falla.seccion === '1A'" class="mt-2 flex items-center">
         <img
             :src="generateNumberIcon(falla.seccion, true)"
-        :alt="`Falla Sección ${falla.seccion}`"
-        class="w-12 h-12 inline-block"
+            :alt="`Falla Sección ${falla.seccion}`"
+            class="w-12 h-12 inline-block"
         />
         <span class="ml-2 font-bold">Sección {{ falla.seccion }}</span>
       </div>
@@ -87,12 +92,15 @@ const generateNumberIcon = (seccion, isLarge = false) => {
         <img :src="falla.boceto" alt="Boceto de la Falla" class="w-full rounded-lg shadow-md" />
       </div>
     </div>
-    <p v-else>Selecciona una Falla en el mapa</p>
+    <p v-else class="text-center">Selecciona una Falla en el mapa</p>
   </div>
 </template>
 
 <style scoped>
-.w-1\/4 {
-  width: 25%;
+/* Asegurar que FallaInfo ocupa el ancho completo en móvil */
+@media (max-width: 768px) {
+  .w-full {
+    width: 100%;
+  }
 }
 </style>
